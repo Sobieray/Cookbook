@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <nav>
+      <router-link to="/">Home</router-link>
+      <router-link to="/recipes">Recipes</router-link>
+    </nav>
     <router-view></router-view>
   </div>
 </template>
@@ -19,5 +22,8 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+#app img {
+  max-width: 200px;
 }
 </style>
