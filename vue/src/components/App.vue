@@ -6,10 +6,23 @@
     <ul>
       <li v-for="user in users">{{ user.firstname }} {{ user.lastname }}</li>
     </ul>
-    <input type="text" name="firstname" placeholder="First Name">
-    <input type="text" name="lastname" placeholder="Last Name">
-    <input type="email" name="email" placeholder="Email">
-    <input type="submit" @click="addUser">
+    <form novalidate @submit.stop.prevent="submit">
+        <md-input-container class="md-input-invalid">
+          <label>Firstname</label>
+          <span class="md-error">Validation message</span>
+          <md-input required></md-input>
+        </md-input-container>
+        <md-input-container>
+          <label>Lastname</label>
+          <md-input required></md-input>
+        </md-input-container>
+        <md-input-container>
+          <label>Email</label>
+          <md-input required></md-input>
+        </md-input-container>
+      
+      <md-button class="md-raised" @click="addUser">Submit</md-button>
+    </form>
   </div>
 </template>
 
@@ -71,20 +84,28 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.hello {
+  display: flex;
+  margin-top: 20vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+form {
+  width: 50%;
+  min-width: 300px;
+}
 h1, h2 {
   font-weight: normal;
 }
-
 ul {
   list-style-type: none;
   padding: 0;
 }
-
 li {
   display: inline-block;
   margin: 0 10px;
 }
-
 a {
   color: #42b983;
 }

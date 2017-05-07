@@ -2,32 +2,28 @@
   <section id="recipe">
     <h1>Recipes</h1>
     <ul>
-      <li v-for="recipe in recipes"><a :href="recipe.slug">{{ recipe.name}}</a></li>
+      <li v-for="recipe in recipes"><a :href="recipe.slug">{{ recipe.title }}</a></li>
     </ul>
   </section>
+
 </template>
 
 <script>
-// const axios = require('axios')
+const axios = require('axios')
 export default {
   name: 'Recipes',
   data () {
     return {
-      recipes: [
-        {
-          name: 'Matts Gumbo',
-          slug: '/recipes/matts-gumbo'
-        },
-        {
-          name: 'Jennas Angle Hair Pasta',
-          slug: '/recipes/jennas-angle-hair-pasta'
-        },
-        {
-          name: 'Natalies Superfood Kale and Cabbage Salad',
-          slug: '/recipes/natalie-loves-her-big-bro-matt'
-        }
-      ]
+      recipes: [],
+      users: []
     }
+  },
+  created () {
+    axios({
+      method: 'get',
+      url: 'http://localhost:5000/recipes'
+    })
+    .then(response => this.recipes.push(...response['data']))
   },
   methods: {
   }
